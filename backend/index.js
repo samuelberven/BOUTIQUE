@@ -1,6 +1,7 @@
-import express from "express"
-import mysql from "mysql"
-import dotenv from 'dotenv'
+import express from "express";
+import mysql from "mysql";
+import dotenv from 'dotenv';
+import cors from "cors";
 
 
 dotenv.config()
@@ -10,6 +11,7 @@ const app = express()
 
 // NOTE: this might be an issue
 app.use(express.json())
+app.use(cors())
 
 // Create a connection pool
 const db = mysql.createConnection({
