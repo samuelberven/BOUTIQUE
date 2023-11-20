@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Products from "./pages/Products"
-import Add from "./pages/Add"
-import Update from "./pages/Update"
+import Products from "./pages/Products";
+import Add from "./pages/Add";
+import Update from "./pages/Update";
 import './App.css';
+import "./style.css"
 
 function App() {
-  return (
+  return ( 
     <div className="App">
       <BrowserRouter>
         <Routes>

@@ -25,20 +25,22 @@ const Products = () => {
   return (
     <div>
         <h1>Boutique - Products</h1>
+        <button><Link to="/add">Add new book</Link></button>
         <div className="products">
             {products.map(product=>(
                 <div className="product" key={product.id}>
                     <h2>{product.name}</h2>
-                    <p>{product.description}</p>
-                    <p>{product.category}</p>
-                    <p>{product.price}</p>
+                    <p>{product.description} </p>
+                    <span>({product.category}) </span>
+                    <span>${product.price} </span>
+                    {/* <p>{product.price}</p> */}
+                    <button>Delete</button>
+                    <br></br>
                 </div>
-
             ))}
-
         </div>
+        <br></br>
         <button><Link to="/add">Add new book</Link></button>
-    
     </div>
   );
 };
