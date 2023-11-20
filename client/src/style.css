@@ -12,9 +12,27 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     /* display: flex; */
+    align-items: center;
 }
 
 .product{
     flex:1
 }
 
+.delete{
+    border: none;
+    padding: 3px 6 px;
+    background-color: white;
+    cursor: pointer;
+    border: 1px solid rgb(245, 191, 191);
+    color: rgb(242, 100, 100);
+}
+
+.update{
+    border: none;
+    padding: 3px 6 px;
+    background-color: white;
+    cursor: pointer;
+    border: 1px solid rgb(204, 204, 243);
+    color: rgb(139, 139, 234);
+}

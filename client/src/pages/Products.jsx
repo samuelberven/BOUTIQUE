@@ -33,10 +33,12 @@ const Products = () => {
                     <p>{product.description} </p>
                     <span>({product.category}) </span>
                     <span>${product.price} </span>
+                    <br></br>
                     {/* <p>{product.price}</p> */}
                     <button className="delete">Delete</button>
+                    <span> </span>
                     <button className="update">Update</button>
-                    <br></br>
+                    <br></br><br></br>
                 </div>
             ))}
         </div>
