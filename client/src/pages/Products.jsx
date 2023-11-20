@@ -34,7 +34,8 @@ const Products = () => {
                     <span>({product.category}) </span>
                     <span>${product.price} </span>
                     {/* <p>{product.price}</p> */}
-                    <button>Delete</button>
+                    <button className="delete">Delete</button>
+                    <button className="update">Update</button>
                     <br></br>
                 </div>
             ))}
