@@ -48,10 +48,37 @@ app.post("/products", (req,res) => {
     db.query(q,[values], (err,data) => {
         if(err) return res.json(err)
         return res.json("Product has been created successfully") 
-    })
+    });
 })
 
 
+// app.delete('/products/:id', (req,res)=>{
+//     const productId = req.params.id;
+//     const q = "DELETE FROM products WHERE id = ?"
+    
+//     db.query(q, [productId], (err,data)=>{
+//         if(err) return res.json(err);
+//         return res.json("Product has been deleted successfully");
+//     });
+// });
+
+
+// app.put("/products/:id", (req,res) => {
+//     const productId = req.params.id;
+//     const q = "UPDATE products SET `name` = ?, `description` = ?, `category` = ?, `price` = ? WHERE id = ?"
+
+//     const values=[
+//         req.body.name,
+//         req.body.description,
+//         req.body.category,
+//         req.body.price,
+//     ];
+
+//     db.query(q, [...values,productId], (err,data) => {
+//         if(err) return res.json(err);
+//         return res.json("Product has been updated successfully");
+//     });
+// });
 
 
 

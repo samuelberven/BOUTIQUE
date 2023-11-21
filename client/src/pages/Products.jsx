@@ -20,7 +20,16 @@ const Products = () => {
             }
         }
         fetchAllProducts()
-    },[])
+    },[]);
+
+    const handleDelete = async (id) => {
+        try{
+            await axios.delete("https://localhost:8800/products/" + id)
+            window.location.reload()
+        }catch(err){
+            console.log(err)
+        }
+    }
 
   return (
     <div>
@@ -35,9 +44,9 @@ const Products = () => {
                     <span>${product.price} </span>
                     <br></br>
                     {/* <p>{product.price}</p> */}
-                    <button className="delete">Delete</button>
+                    <button className="delete" onClick={()=>handleDelete(product.id)}>Delete</button>
                     <span> </span>
-                    <button className="update">Update</button>
+                    <button className="update"><Link to={`/update/${product.id}`}>Update</Link ></button>
                     <br></br><br></br>
                 </div>
             ))}
