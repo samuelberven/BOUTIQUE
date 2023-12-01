@@ -30,6 +30,21 @@ app.get("/products", (req, res) => {
     })
 })
 
+
+            // NOTE: Could be wrong
+            // app.get("/products/:id", (req, res) => {
+            //     const q = 'SELECT * FROM products WHERE id = ?'
+            //     const query_id = req.params.id;
+
+            //     db.query(q,[query_id], (err,data) => {
+            //         if(err) return res.json(err)
+            //         return res.json(data)
+            //     });
+            // })
+
+
+
+
 app.post("/products", (req,res) => {
     const q = "INSERT INTO products (`name`,`description`,`category`,`price`) VALUES (?)"
     const values = [
@@ -56,36 +71,71 @@ app.post("/products", (req,res) => {
         if(err) return res.json(err)
         return res.json("Product has been created successfully") 
     });
-})
+});
 
 
-// app.delete('/products/:id', (req,res)=>{
+// // Re: req.body vs req.params: https://stackoverflow.com/questions/24976172/node-js-req-params-vs-req-body
+// app.put('/update', (req, res) => {
+//     const id = req.body.id;
+//     const name = req.body.name;
+//     const description = req.body.description;
+//     const category = req.body.category;
+//     const price = req.body.price;
+//     const update_parameters = [name, description, category, price, id]
+
+//     db.query(
+//         `UPDATE
+//         products 
+//         SET name = ?,
+//         description = ?,
+//         category = ?,
+//         price = ?,
+//         WHERE id = ?`, 
+//         update_parameters
+//         );
+//         (err, result) => {
+//             if (err) {
+//                 console.log(err);
+//             } else {
+//                 req.send(result);
+//             }
+//         }
+// });
+
+
+// app.delete()
+
+
+
+// app.delete("/products/:id", (req,res)=>{
 //     const productId = req.params.id;
 //     const q = "DELETE FROM products WHERE id = ?"
     
-//     db.query(q, [productId], (err,data)=>{
+//     db.query(q,[productId], (err,data)=>{
 //         if(err) return res.json(err);
-//         return res.json("Product has been deleted successfully");
+//         return res.json("Product has been deleted successfully.");
 //     });
 // });
 
 
-// app.put("/products/:id", (req,res) => {
-//     const productId = req.params.id;
-//     const q = "UPDATE products SET `name` = ?, `description` = ?, `category` = ?, `price` = ? WHERE id = ?"
+app.put("/products/:id", (req,res) => {
+    const productId = req.params.id;
+    // const productId = req.body.id;
 
-//     const values=[
-//         req.body.name,
-//         req.body.description,
-//         req.body.category,
-//         req.body.price,
-//     ];
+    const q = "UPDATE products SET `name` = ?, `description` = ?, `category` = ?, `price` = ? WHERE id = ?"
 
-//     db.query(q, [...values,productId], (err,data) => {
-//         if(err) return res.json(err);
-//         return res.json("Product has been updated successfully");
-//     });
-// });
+    const values=[
+        req.body.name,
+        req.body.description,
+        req.body.category,
+        req.body.price,
+    ];
+
+    db.query(q, [...values,productId], (err,data) => {
+        if(err) return res.json(err);
+        return res.json("Product has been updated successfully");
+    });
+});
 
 
 

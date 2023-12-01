@@ -29,7 +29,7 @@ const Update = () => {
   const handleClick = async e =>{
    e.preventDefault()
    try{
-    await axios.put("http://localhost:3000/products/"+ productID, product);
+    await axios.put("http://localhost:8800/products/"+ productID, product);
     navigate("/")
    }catch(err){
     console.log(err)
