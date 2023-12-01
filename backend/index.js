@@ -3,9 +3,9 @@ import mysql from "mysql";
 import dotenv from 'dotenv';
 import cors from "cors";
 
+import {copyData} from './microFromBob/client.js';
 
 dotenv.config()
-
 
 const app = express()
 
@@ -17,10 +17,10 @@ app.use(cors())
 const db = mysql.createConnection({
     host: process.env.MYSQL_HOST,
     user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSOWRD,
+    password: process.env.MYSQL_PASSWORD,
+    // password: process.env.MYSQL_PASSOWRD,
     database: process.env.MYSQL_DATABASE
   })
-
 
 app.get("/products", (req, res) => {
     const q = 'SELECT * FROM products'
@@ -30,12 +30,6 @@ app.get("/products", (req, res) => {
     })
 })
 
-        // app.get("/", (req, res)=>{
-        //     res.json("hello this is the backend")
-        // })
-
-
-
 app.post("/products", (req,res) => {
     const q = "INSERT INTO products (`name`,`description`,`category`,`price`) VALUES (?)"
     const values = [
@@ -44,6 +38,19 @@ app.post("/products", (req,res) => {
         req.body.category,
         req.body.price,
     ];
+
+                                const data = {
+                                    readyForCopying: true,
+                                    json_data: {
+                                    name: req.body.name,
+                                    description: req.body.description,
+                                    category: req.body.category,
+                                    price: req.body.price,
+                                    },
+                                };
+                                
+                                copyData(data);
+
 
     db.query(q,[values], (err,data) => {
         if(err) return res.json(err)
