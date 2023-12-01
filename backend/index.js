@@ -74,33 +74,7 @@ app.post("/products", (req,res) => {
 });
 
 
-// // Re: req.body vs req.params: https://stackoverflow.com/questions/24976172/node-js-req-params-vs-req-body
-// app.put('/update', (req, res) => {
-//     const id = req.body.id;
-//     const name = req.body.name;
-//     const description = req.body.description;
-//     const category = req.body.category;
-//     const price = req.body.price;
-//     const update_parameters = [name, description, category, price, id]
 
-//     db.query(
-//         `UPDATE
-//         products 
-//         SET name = ?,
-//         description = ?,
-//         category = ?,
-//         price = ?,
-//         WHERE id = ?`, 
-//         update_parameters
-//         );
-//         (err, result) => {
-//             if (err) {
-//                 console.log(err);
-//             } else {
-//                 req.send(result);
-//             }
-//         }
-// });
 
 
 // app.delete()
@@ -117,6 +91,8 @@ app.post("/products", (req,res) => {
 //     });
 // });
 
+
+// // Re: req.body vs req.params: https://stackoverflow.com/questions/24976172/node-js-req-params-vs-req-body
 
 app.put("/products/:id", (req,res) => {
     const productId = req.params.id;
