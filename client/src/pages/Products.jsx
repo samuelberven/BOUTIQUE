@@ -31,10 +31,10 @@ const Products = () => {
     //     }
     // }
 
-    const handleDelete = async (id, e)=> {
+    const handleDelete = async (id)=> {
         try{
             await axios.delete(`https://localhost:8800/products/${id}`)
-            // window.location.reload()
+            window.location.reload()
         }catch(err){
             console.log(err)
         }

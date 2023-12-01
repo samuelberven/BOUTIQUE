@@ -22,7 +22,7 @@ const db = mysql.createConnection({
     database: process.env.MYSQL_DATABASE
   })
 
-app.get("/products", (req, res) => {
+app.get("/products/:id", (req, res) => {
     const q = 'SELECT * FROM products'
     db.query(q, (err,data)=>{
         if(err) return res.json(err)
@@ -31,17 +31,25 @@ app.get("/products", (req, res) => {
 })
 
 
+
             // NOTE: Could be wrong
-            // app.get("/products/:id", (req, res) => {
-            //     const q = 'SELECT * FROM products WHERE id = ?'
-            //     const query_id = req.params.id;
+            app.get("/products/:id", (req, res) => {
+                const id = req.params.id
+                const q = `SELECT * FROM products WHERE id = ?`
+                // const productId = req.params.id;
 
-            //     db.query(q,[query_id], (err,data) => {
-            //         if(err) return res.json(err)
-            //         return res.json(data)
-            //     });
-            // })
+                db.query(q, id, (err,data)=>{
+                    if(err) return res.json(err)
+                    return res.json(data) 
+                })
+            })
 
+
+            app.get("/products/:id", async (req, res) => {
+                const id = req.params.id
+                const product = await getProduct(id)
+                res.send(product)
+            })
 
 
 
@@ -81,15 +89,17 @@ app.post("/products", (req,res) => {
 
 
 
-// app.delete("/products/:id", (req,res)=>{
-//     const productId = req.params.id;
-//     const q = "DELETE FROM products WHERE id = ?"
+app.delete("/products/:id", (req,res) => {
+    const productId = req.params.id;
+    // const productId = req.body.id;
+
+    const q = "DELETE FROM products WHERE id = ?"
     
-//     db.query(q,[productId], (err,data)=>{
-//         if(err) return res.json(err);
-//         return res.json("Product has been deleted successfully.");
-//     });
-// });
+    db.query(q,[productId], (err,data)=>{
+        if(err) return res.json(err);
+        return res.json("Product has been deleted successfully.");
+    });
+});
 
 
 // // Re: req.body vs req.params: https://stackoverflow.com/questions/24976172/node-js-req-params-vs-req-body
