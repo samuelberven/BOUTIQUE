@@ -22,27 +22,34 @@ const Products = () => {
         fetchAllProducts()
     },[]);
 
+
     // const handleDelete = async (id)=> {
     //     try{
-    //         await axios.delete("https://localhost:8800/products/"+id)
-    //         window.location.reload()
+    //         await axios.delete(`https://localhost:8800/products/${id}`)
+    //         // window.location.reload()
     //     }catch(err){
     //         console.log(err)
     //     }
-    // }
+    // };
 
-    const handleDelete = async (id)=> {
-        try{
-            await axios.delete(`https://localhost:8800/products/${id}`)
-            window.location.reload()
-        }catch(err){
-            console.log(err)
-        }
-    }
+    //             const handleChange = (e) =>{
+    //                 setProduct(prev=>({...prev, [e.target.name]: e.target.value}));
+    //             };
+                
+                const handleDelete = async(id) => {
+                // e.preventDefault()
+                try{
+                    // await axios.delete(`https://localhost:8800/products/${id}`);
+                    await axios.delete(`http://localhost:8800/products/${id}`);
+                    window.location.reload()
+                }catch(err){
+                    console.log(err)
+                }
+                
+                }
+    
 
-    //     e.preventDefault();
-    //     axios.delete(`https://localhost:8800/products/${id}`)
-    //     .then(res => console.log('Deleted', res)).catch(err => console.log(err))
+
 
 
 
@@ -58,8 +65,8 @@ const Products = () => {
                     <span>({product.category}) </span>
                     <span>${product.price} </span>
                     <br></br>
-                    <button className="delete" onClick={()=>handleDelete(product.id)}>Delete</button>
                     {/* <button className="delete" onClick={()=>handleDelete(product.id)}>Delete</button> */}
+                    <button className="delete" onClick={()=>handleDelete(product.id)}>Delete</button>
                     <span> </span>
                     <button className="update"><Link to={`/update/${product.id}`}>Update</Link ></button>
                     <br></br><br></br>

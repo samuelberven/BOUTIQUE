@@ -2,7 +2,6 @@ import express from "express";
 import mysql from "mysql";
 import dotenv from 'dotenv';
 import cors from "cors";
-
 import {copyData} from './microFromBob/client.js';
 
 dotenv.config()
@@ -22,7 +21,7 @@ const db = mysql.createConnection({
     database: process.env.MYSQL_DATABASE
   })
 
-app.get("/products/:id", (req, res) => {
+app.get("/products", (req, res) => {
     const q = 'SELECT * FROM products'
     db.query(q, (err,data)=>{
         if(err) return res.json(err)
@@ -30,6 +29,14 @@ app.get("/products/:id", (req, res) => {
     })
 })
 
+
+                                                // app.get("/products/:id", (req, res) => {
+                                                //     const q = 'SELECT * FROM products'
+                                                //     db.query(q, (err,data)=>{
+                                                //         if(err) return res.json(err)
+                                                //         return res.json(data) 
+                                                //     })
+                                                // })
 
 
             // NOTE: Could be wrong
@@ -42,13 +49,6 @@ app.get("/products/:id", (req, res) => {
                     if(err) return res.json(err)
                     return res.json(data) 
                 })
-            })
-
-
-            app.get("/products/:id", async (req, res) => {
-                const id = req.params.id
-                const product = await getProduct(id)
-                res.send(product)
             })
 
 
@@ -71,9 +71,7 @@ app.post("/products", (req,res) => {
                                     price: req.body.price,
                                     },
                                 };
-                                
                                 copyData(data);
-
 
     db.query(q,[values], (err,data) => {
         if(err) return res.json(err)
@@ -82,28 +80,16 @@ app.post("/products", (req,res) => {
 });
 
 
-
-
-
-// app.delete()
-
-
-
 app.delete("/products/:id", (req,res) => {
     const productId = req.params.id;
-    // const productId = req.body.id;
-
-    const q = "DELETE FROM products WHERE id = ?"
-    
+    const q = "DELETE FROM products WHERE id = ?"    
     db.query(q,[productId], (err,data)=>{
         if(err) return res.json(err);
         return res.json("Product has been deleted successfully.");
     });
 });
 
-
-// // Re: req.body vs req.params: https://stackoverflow.com/questions/24976172/node-js-req-params-vs-req-body
-
+// Re: req.body vs req.params: https://stackoverflow.com/questions/24976172/node-js-req-params-vs-req-body
 app.put("/products/:id", (req,res) => {
     const productId = req.params.id;
     // const productId = req.body.id;
@@ -122,8 +108,6 @@ app.put("/products/:id", (req,res) => {
         return res.json("Product has been updated successfully");
     });
 });
-
-
 
 app.listen(8800, ()=>{
     console.log("Connected to backend!")
