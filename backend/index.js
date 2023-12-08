@@ -29,29 +29,17 @@ app.get("/products", (req, res) => {
     })
 })
 
+// NOTE: Could be wrong
+app.get("/products/:id", (req, res) => {
+    const id = req.params.id
+    const q = `SELECT * FROM products WHERE id = ?`
+    // const productId = req.params.id;
 
-                                                // app.get("/products/:id", (req, res) => {
-                                                //     const q = 'SELECT * FROM products'
-                                                //     db.query(q, (err,data)=>{
-                                                //         if(err) return res.json(err)
-                                                //         return res.json(data) 
-                                                //     })
-                                                // })
-
-
-            // NOTE: Could be wrong
-            app.get("/products/:id", (req, res) => {
-                const id = req.params.id
-                const q = `SELECT * FROM products WHERE id = ?`
-                // const productId = req.params.id;
-
-                db.query(q, id, (err,data)=>{
-                    if(err) return res.json(err)
-                    return res.json(data) 
-                })
-            })
-
-
+    db.query(q, id, (err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data) 
+    })
+})
 
 app.post("/products", (req,res) => {
     const q = "INSERT INTO products (`name`,`description`,`category`,`price`) VALUES (?)"
@@ -62,16 +50,17 @@ app.post("/products", (req,res) => {
         req.body.price,
     ];
 
-                                const data = {
-                                    readyForCopying: true,
-                                    json_data: {
-                                    name: req.body.name,
-                                    description: req.body.description,
-                                    category: req.body.category,
-                                    price: req.body.price,
-                                    },
-                                };
-                                copyData(data);
+        // FOR DEMO VIDEO: MICROSERVICE IMPLEMENTATION HERE
+        const data = {
+            readyForCopying: true,
+            json_data: {
+            name: req.body.name,
+            description: req.body.description,
+            category: req.body.category,
+            price: req.body.price,
+            },
+        };
+        copyData(data);
 
     db.query(q,[values], (err,data) => {
         if(err) return res.json(err)

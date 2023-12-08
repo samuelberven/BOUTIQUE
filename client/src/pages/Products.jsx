@@ -2,13 +2,11 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 
-// This might be wrong
+// NOTE: This might be wrong-- look into it
 import {Link} from 'react-router-dom';
-
 
 const Products = () => {
     const [products,setProducts] = useState([])
-
     useEffect(()=>{
         const fetchAllProducts = async ()=>{
             try{
@@ -22,41 +20,20 @@ const Products = () => {
         fetchAllProducts()
     },[]);
 
-
-    // const handleDelete = async (id)=> {
-    //     try{
-    //         await axios.delete(`https://localhost:8800/products/${id}`)
-    //         // window.location.reload()
-    //     }catch(err){
-    //         console.log(err)
-    //     }
-    // };
-
-    //             const handleChange = (e) =>{
-    //                 setProduct(prev=>({...prev, [e.target.name]: e.target.value}));
-    //             };
-                
-                const handleDelete = async(id) => {
-                // e.preventDefault()
-                try{
-                    // await axios.delete(`https://localhost:8800/products/${id}`);
-                    await axios.delete(`http://localhost:8800/products/${id}`);
-                    window.location.reload()
-                }catch(err){
-                    console.log(err)
-                }
-                
-                }
+    const handleDelete = async(id) => {
+    // e.preventDefault()
+    try{
+        await axios.delete(`http://localhost:8800/products/${id}`);
+        window.location.reload()
+    }catch(err){
+        console.log(err)
+    }
+}
     
-
-
-
-
-
   return (
     <div>
         <h1>Boutique - Products</h1>
-        <button><Link to="/add">Add new book</Link></button>
+        <button><Link to="/add">Add new product</Link></button>
         <div className="products">
             {products.map(product=>(
                 <div className="product" key={product.id}>
@@ -65,7 +42,6 @@ const Products = () => {
                     <span>({product.category}) </span>
                     <span>${product.price} </span>
                     <br></br>
-                    {/* <button className="delete" onClick={()=>handleDelete(product.id)}>Delete</button> */}
                     <button className="delete" onClick={()=>handleDelete(product.id)}>Delete</button>
                     <span> </span>
                     <button className="update"><Link to={`/update/${product.id}`}>Update</Link ></button>
@@ -74,7 +50,7 @@ const Products = () => {
             ))}
         </div>
         <br></br>
-        <button><Link to="/add">Add new book</Link></button>
+        <button><Link to="/add">Add new product</Link></button>
     </div>
   );
 };
