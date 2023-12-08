@@ -1,3 +1,4 @@
+
 import zmq from 'zeromq';
 
 import express from "express";
@@ -10,6 +11,7 @@ server.use(express.json())
 async function run() {
   const socket = new zmq.Reply();
 
+  // await socket.bind("tcp://*:5555");
   await socket.bind("tcp://*:5555");
 
   for await (const [msg] of socket) {
