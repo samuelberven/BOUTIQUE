@@ -15,6 +15,13 @@
     align-items: center;
 }
 
+.customer-facing-products{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* display: flex; */
+    align-items: center;
+}
+
 .product{
     flex:1
 }
@@ -57,3 +64,18 @@ input{
     font-weight: bold;
     cursor: pointer;  
 }
+
+
+
+.top-link-button{
+    border: none;
+    padding: 3px 6 px;
+    background-color: white;
+    cursor: pointer;
+    border: 2px solid rgb(204, 204, 243);
+    color: rgb(139, 139, 234);
+    text-align: left;
+}
+
+
+

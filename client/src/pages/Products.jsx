@@ -32,7 +32,13 @@ const Products = () => {
     
   return (
     <div>
+        <h1>
+            <button className="top-link-button"><Link to="/customerFacing">Customer-facing database preview</Link></button>
+        </h1>
+
         <h1>Boutique - Products</h1>
+        <h3>(Internal company use)</h3>
+                {/* HERE */}
         <button><Link to="/add">Add new product</Link></button>
         <div className="products">
             {products.map(product=>(

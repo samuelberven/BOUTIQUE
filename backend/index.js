@@ -2,7 +2,8 @@ import express from "express";
 import mysql from "mysql";
 import dotenv from 'dotenv';
 import cors from "cors";
-import {copyData} from './microFromBob/client.js';
+import {copyData} from './microservices/queryFilter/client.js';
+// import {copyData} from './microFromBob/client.js';
 
 dotenv.config()
 
@@ -21,7 +22,12 @@ const db = mysql.createConnection({
     database: process.env.MYSQL_DATABASE
   })
 
-app.get("/products", (req, res) => {
+
+
+// **************************************
+// products database routes
+// **************************************
+  app.get("/products", (req, res) => {
     const q = 'SELECT * FROM products'
     db.query(q, (err,data)=>{
         if(err) return res.json(err)
@@ -50,24 +56,28 @@ app.post("/products", (req,res) => {
         req.body.price,
     ];
 
-        // FOR DEMO VIDEO: MICROSERVICE IMPLEMENTATION HERE
-        const data = {
-            readyForCopying: true,
-            json_data: {
-            name: req.body.name,
-            description: req.body.description,
-            category: req.body.category,
-            price: req.body.price,
-            },
-        };
-        copyData(data);
+    // FOR DEMO VIDEO: MICROSERVICE IMPLEMENTATION HERE
+    const data = {
+        readyForCopying: true,
+        json_data: {
+        name: req.body.name,
+        description: req.body.description,
+        category: req.body.category,
+        price: req.body.price,
+        },
+    };
 
+    copyData(data)
+    // const microResponse = copyData(data);
+
+
+
+    
     db.query(q,[values], (err,data) => {
         if(err) return res.json(err)
         return res.json("Product has been created successfully") 
     });
 });
-
 
 app.delete("/products/:id", (req,res) => {
     const productId = req.params.id;
@@ -97,6 +107,46 @@ app.put("/products/:id", (req,res) => {
         return res.json("Product has been updated successfully");
     });
 });
+
+
+
+
+// **************************************
+// customerFacing database routes
+// **************************************
+
+app.get("/customerFacing", (req, res) => {
+    const q = 'SELECT * FROM customerFacing'
+    db.query(q, (err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data) 
+    })
+})
+
+// NOTE: Could be wrong
+app.get("/customerFacing/:id", (req, res) => {
+    const id = req.params.id
+    const q = `SELECT * FROM customerFacing WHERE id = ?`
+    // const productId = req.params.id;
+
+    db.query(q, id, (err,data)=>{
+        if(err) return res.json(err)
+        return res.json(data) 
+    })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.listen(8800, ()=>{
     console.log("Connected to backend!")
