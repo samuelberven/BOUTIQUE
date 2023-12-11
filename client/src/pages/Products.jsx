@@ -40,12 +40,14 @@ const Products = () => {
             <button className="top-link-button"><Link to="/customerFacing">Customer-facing database preview</Link></button>
         </h1>
 
-        <h1>Boutique - Products</h1>
-        <h3>(Internal company use)</h3>
-                {/* HERE */}
-        <button><Link to="/add">Add new product</Link></button>
+        <div className="header">
+            <h1>Boutique - Products</h1>
+            <h3>(Internal company use)</h3>
+                    {/* HERE */}
+            <button><Link to="/add">Add new product</Link></button>
 
-        <div><br></br></div>
+            <div><br></br></div>
+        </div>
 
         <div className="products">
             {products.map(product=>(

@@ -69,7 +69,10 @@ input{
     cursor: pointer;  
 }
 
-
+/* .header{
+    position: fixed;
+    z-index: 1000;
+} */
 
 .top-link-button{
     border: none;

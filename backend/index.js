@@ -75,6 +75,10 @@ app.post("/products", (req,res) => {
             copyData(data)
 
     db.query(query1,[values], (err,data) => {
+        
+
+
+
         if(err) return res.json(err)
         return res.json("Product has been created successfully") 
     });
