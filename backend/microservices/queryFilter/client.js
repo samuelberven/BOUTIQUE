@@ -1,13 +1,9 @@
 
 import zmq from 'zeromq';
-
-// import json from 'json';
 import express from "express";
+
 const client = express()
 client.use(express.json())
-
-// const zmq = require("zeromq");
-// const json = require("json");
 
 export async function copyData(dataDict) {
   const socket = new zmq.Request();

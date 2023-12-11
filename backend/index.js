@@ -3,17 +3,14 @@ import mysql from "mysql";
 import dotenv from 'dotenv';
 import cors from "cors";
 import {copyData} from './microservices/queryFilter/client.js';
-// import {copyData} from './microFromBob/client.js';
 
 dotenv.config()
 
 const app = express()
-
-// NOTE: this might be an issue
 app.use(express.json())
 app.use(cors())
 
-// Create a connection pool
+// Create a db connection
 const db = mysql.createConnection({
     host: process.env.MYSQL_HOST,
     user: process.env.MYSQL_USER,
@@ -21,7 +18,6 @@ const db = mysql.createConnection({
     // password: process.env.MYSQL_PASSOWRD,
     database: process.env.MYSQL_DATABASE
   })
-
 
 
 // **************************************
@@ -35,13 +31,10 @@ const db = mysql.createConnection({
     })
 })
 
-// NOTE: Could be wrong
 app.get("/products/:id", (req, res) => {
     const id = req.params.id
-    const q = `SELECT * FROM products WHERE id = ?`
-    // const productId = req.params.id;
-
-    db.query(q, id, (err,data)=>{
+    const query = `SELECT * FROM products WHERE id = ?`
+    db.query(query, id, (err,data)=>{
         if(err) return res.json(err)
         return res.json(data) 
     })
@@ -55,39 +48,35 @@ app.post("/products", (req,res) => {
         req.body.category,
         req.body.price,
     ];
-                            // const query2 = "INSERT INTO customerFacing (`name`,`description`,`price`) VALUES (?)"
-                            //         const values2 = [
-                            //             req.body.name,
-                            //             req.body.description,
-                            //             req.body.price,
-                            //         ];
+                // const query2 = "INSERT INTO customerFacing (`name`,`description`,`price`) VALUES (?)"
+                //         const values2 = [
+                //             req.body.name,
+                //             req.body.description,
+                //             req.body.price,
+                //         ];
 
-            // FOR DEMO VIDEO: MICROSERVICE IMPLEMENTATION HERE
-            const data = {
-                readyForCopying: true,
-                json_data: {
-                name: req.body.name,
-                description: req.body.description,
-                category: req.body.category,
-                price: req.body.price,
-                },
-            };
-            copyData(data)
+
+        // FOR DEMO VIDEO: MICROSERVICE IMPLEMENTATION HERE
+        const data = {
+            readyForCopying: true,
+            json_data: {
+            name: req.body.name,
+            description: req.body.description,
+            category: req.body.category,
+            price: req.body.price,
+            },
+        };
+        copyData(data)
 
     db.query(query1,[values], (err,data) => {
-        
-
-
-
         if(err) return res.json(err)
         return res.json("Product has been created successfully") 
     });
 
-
-    //                  db.query(query2,[values2], (err,data) => {
-    //                 if(err) return res.json(err)
-    //                 return res.json("Product has been added to customer-facing successfully") 
-    //             });
+                //      db.query(query2,[values2], (err,data) => {
+                //     if(err) return res.json(err)
+                //     return res.json("Product has been added to customer-facing successfully") 
+                // });
 
         
 
@@ -96,8 +85,8 @@ app.post("/products", (req,res) => {
 
 app.delete("/products/:id", (req,res) => {
     const productId = req.params.id;
-    const q = "DELETE FROM products WHERE id = ?"    
-    db.query(q,[productId], (err,data)=>{
+    const query = "DELETE FROM products WHERE id = ?"    
+    db.query(query,[productId], (err,data)=>{
         if(err) return res.json(err);
         return res.json("Product has been deleted successfully.");
     });
@@ -106,18 +95,14 @@ app.delete("/products/:id", (req,res) => {
 // Re: req.body vs req.params: https://stackoverflow.com/questions/24976172/node-js-req-params-vs-req-body
 app.put("/products/:id", (req,res) => {
     const productId = req.params.id;
-    // const productId = req.body.id;
-
-    const q = "UPDATE products SET `name` = ?, `description` = ?, `category` = ?, `price` = ? WHERE id = ?"
-
+    const query = "UPDATE products SET `name` = ?, `description` = ?, `category` = ?, `price` = ? WHERE id = ?"
     const values=[
         req.body.name,
         req.body.description,
         req.body.category,
         req.body.price,
     ];
-
-    db.query(q, [...values,productId], (err,data) => {
+    db.query(query, [...values,productId], (err,data) => {
         if(err) return res.json(err);
         return res.json("Product has been updated successfully");
     });
