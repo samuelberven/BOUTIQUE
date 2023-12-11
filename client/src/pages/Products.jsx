@@ -2,6 +2,10 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 
+import { MdDelete } from "react-icons/md";
+import { MdEdit } from "react-icons/md";
+
+
 // NOTE: This might be wrong-- look into it
 import {Link} from 'react-router-dom';
 
@@ -40,17 +44,26 @@ const Products = () => {
         <h3>(Internal company use)</h3>
                 {/* HERE */}
         <button><Link to="/add">Add new product</Link></button>
+
+        <div><br></br></div>
+
         <div className="products">
             {products.map(product=>(
                 <div className="product" key={product.id}>
                     <h2>{product.name}</h2>
-                    <p>{product.description} </p>
-                    <span>({product.category}) </span>
+                    <p> -Product picture eventually goes here- </p>
+                    <p>({product.category}) </p>
+                    <span>{product.description} </span>
                     <span>${product.price} </span>
                     <br></br>
-                    <button className="delete" onClick={()=>handleDelete(product.id)}>Delete</button>
-                    <span> </span>
-                    <button className="update"><Link to={`/update/${product.id}`}>Update</Link ></button>
+
+                    {/* <button className="delete" onClick={()=>handleDelete(product.id)}>Delete</button> */}                    
+                    <button className="delete" onClick={()=>handleDelete(product.id)}><MdDelete /></button>
+                    <span>    </span>
+
+                    {/* <button className="update"><Link to={`/update/${product.id}`}>Update</Link ></button> */}
+                    <button className="update"><Link to={`/update/${product.id}`}><MdEdit /></Link ></button>
+                    
                     <br></br><br></br>
                 </div>
             ))}
