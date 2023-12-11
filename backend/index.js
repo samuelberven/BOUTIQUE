@@ -48,35 +48,46 @@ app.get("/products/:id", (req, res) => {
 })
 
 app.post("/products", (req,res) => {
-    const q = "INSERT INTO products (`name`,`description`,`category`,`price`) VALUES (?)"
+    const query1 = "INSERT INTO products (`name`,`description`,`category`,`price`) VALUES (?)"
     const values = [
         req.body.name,
         req.body.description,
         req.body.category,
         req.body.price,
     ];
+                            // const query2 = "INSERT INTO customerFacing (`name`,`description`,`price`) VALUES (?)"
+                            //         const values2 = [
+                            //             req.body.name,
+                            //             req.body.description,
+                            //             req.body.price,
+                            //         ];
 
-    // FOR DEMO VIDEO: MICROSERVICE IMPLEMENTATION HERE
-    const data = {
-        readyForCopying: true,
-        json_data: {
-        name: req.body.name,
-        description: req.body.description,
-        category: req.body.category,
-        price: req.body.price,
-        },
-    };
+            // FOR DEMO VIDEO: MICROSERVICE IMPLEMENTATION HERE
+            const data = {
+                readyForCopying: true,
+                json_data: {
+                name: req.body.name,
+                description: req.body.description,
+                category: req.body.category,
+                price: req.body.price,
+                },
+            };
+            copyData(data)
 
-    copyData(data)
-    // const microResponse = copyData(data);
-
-
-
-    
-    db.query(q,[values], (err,data) => {
+    db.query(query1,[values], (err,data) => {
         if(err) return res.json(err)
         return res.json("Product has been created successfully") 
     });
+
+
+    //                  db.query(query2,[values2], (err,data) => {
+    //                 if(err) return res.json(err)
+    //                 return res.json("Product has been added to customer-facing successfully") 
+    //             });
+
+        
+
+
 });
 
 app.delete("/products/:id", (req,res) => {
