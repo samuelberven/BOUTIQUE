@@ -38,6 +38,16 @@ const Update = () => {
   }
 
 
+//   [
+//     {
+//         "id": 61,
+//         "name": "Pastel Sweater",
+//         "description": "A sweater featuring beautiful pastel colors",
+//         "category": "Outerwear",
+//         "price": 29.99
+//     }
+// ]
+
   console.log(product)
     return (
     <div className="form">
@@ -50,7 +60,7 @@ const Update = () => {
         />
         <input 
             type="text" 
-            placeholder="description" 
+            placeholder="description"
             onChange={handleChange} 
             name="description"            
         />
