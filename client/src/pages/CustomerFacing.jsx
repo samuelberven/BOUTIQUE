@@ -31,7 +31,8 @@ const CustomerFacing = () => {
                     <p>{product.description} </p>
                     <span>${product.price} </span>
                     <br></br>
-                    <br></br><br></br>
+                    <br></br>
+                    <br></br>
                 </div>
             ))}
         </div>
