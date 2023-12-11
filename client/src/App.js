@@ -14,12 +14,7 @@ function App() {
           <Route path="/" element={<Products/>}/>
           <Route path="/add" element={<Add/>}/>
           <Route path="/update/:id" element={<Update/>}/>
-
-
-                    <Route path="/customerFacing" element={<CustomerFacing/>}/>
-
-          
-
+          <Route path="/customerFacing" element={<CustomerFacing/>}/>
         </Routes>
       </BrowserRouter>
     </div>

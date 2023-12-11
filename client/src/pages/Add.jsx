@@ -2,8 +2,6 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import { Navigate, useNavigate } from "react-router-dom";
-
 
 const Add = () => {
   const [product,setProduct] = useState({
@@ -29,7 +27,6 @@ const Add = () => {
    }
 
   }
-
 
   console.log(product)
     return (

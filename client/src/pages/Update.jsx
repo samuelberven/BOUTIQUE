@@ -4,9 +4,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-// import { Navigate, useNavigate } from "react-router-dom";
-
-
 const Update = () => {
   const [product,setProduct] = useState({
     name:"",
@@ -21,7 +18,6 @@ const Update = () => {
   // Gets the (isolated) product ID 
   const productID = location.pathname.split("/")[2]
   
-
   const handleChange = (e) =>{
     setProduct(prev=>({...prev, [e.target.name]: e.target.value}));
   };
@@ -34,19 +30,7 @@ const Update = () => {
    }catch(err){
     console.log(err)
    }
-
   }
-
-
-//   [
-//     {
-//         "id": 61,
-//         "name": "Pastel Sweater",
-//         "description": "A sweater featuring beautiful pastel colors",
-//         "category": "Outerwear",
-//         "price": 29.99
-//     }
-// ]
 
   console.log(product)
     return (

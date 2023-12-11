@@ -55,7 +55,6 @@ app.post("/products", (req,res) => {
                 //             req.body.price,
                 //         ];
 
-
         // FOR DEMO VIDEO: MICROSERVICE IMPLEMENTATION HERE
         const data = {
             readyForCopying: true,
@@ -78,10 +77,8 @@ app.post("/products", (req,res) => {
                 //     return res.json("Product has been added to customer-facing successfully") 
                 // });
 
-        
-
-
 });
+
 
 app.delete("/products/:id", (req,res) => {
     const productId = req.params.id;
@@ -109,15 +106,12 @@ app.put("/products/:id", (req,res) => {
 });
 
 
-
-
 // **************************************
 // customerFacing database routes
 // **************************************
-
 app.get("/customerFacing", (req, res) => {
-    const q = 'SELECT * FROM customerFacing'
-    db.query(q, (err,data)=>{
+    const query = 'SELECT * FROM customerFacing'
+    db.query(query, (err,data)=>{
         if(err) return res.json(err)
         return res.json(data) 
     })
@@ -126,26 +120,12 @@ app.get("/customerFacing", (req, res) => {
 // NOTE: Could be wrong
 app.get("/customerFacing/:id", (req, res) => {
     const id = req.params.id
-    const q = `SELECT * FROM customerFacing WHERE id = ?`
-    // const productId = req.params.id;
-
-    db.query(q, id, (err,data)=>{
+    const query = `SELECT * FROM customerFacing WHERE id = ?`
+    db.query(query, id, (err,data)=>{
         if(err) return res.json(err)
         return res.json(data) 
     })
 })
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 app.listen(8800, ()=>{

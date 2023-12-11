@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-
-// NOTE: This might be wrong-- look into it
 import {Link} from 'react-router-dom';
 
 const CustomerFacing = () => {
@@ -28,10 +26,8 @@ const CustomerFacing = () => {
             {products.map(product=>(
                 <div className="product" key={product.id}>
                     <h2>{product.name}</h2>
-                    <p>{product.description} </p>
-                    <span>${product.price} </span>
-                    <br></br>
-                    <br></br>
+                    <span>{product.description} </span><br></br>
+                    <span>${product.price} </span><br></br>
                     <br></br>
                 </div>
             ))}
