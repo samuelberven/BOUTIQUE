@@ -1,4 +1,4 @@
-### BOUTIQUE - Product Database
+# BOUTIQUE - Product Database
 Boutique is a full stack web application that allowers users to create, edit, update, and delete product entries. The full entry is made into an internal-use company database, and an abbreviated entry is separate made into a customer-facing database. A microservice is used for modularity.
 
 ## Features
@@ -26,14 +26,14 @@ To run locally, Node.js, MariaDB (MySQL), npm, and ZeroMQ must be installed on y
   (Currently working on)
 
 ## TODO:
-  # Short-term:
+  ### Short-term:
   - HTML and CSS (positioning, colors, aesthetic design)
   - Add site logo
   - Remove unnecessary files (logo,svg, etc.)
   - Rewrite microservice in Java
   - Convert to TypeScript
   - Add error-handling and checks (making sure the passed data is what it should be, etc.)
-  # Mid-term
+  ### Mid-term
   - Add photos to products
   - Make database more robust, adding attributes where necessary
   - Rename SQL tables (and attributes) to something more logical ("products" to "company-internal", etc.)
@@ -41,6 +41,6 @@ To run locally, Node.js, MariaDB (MySQL), npm, and ZeroMQ must be installed on y
   - Auto-complete for search
   - Use PostgreSQL for customerFacing table
   - Login credentials and authentication
-  # Long-term:
+  ### Long-term:
   - (Basic) mobile app 
   - Deploy on cloud (Azure)
