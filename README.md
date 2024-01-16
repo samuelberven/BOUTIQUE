@@ -1,5 +1,5 @@
 # BOUTIQUE - Product Database
-Boutique is a full stack web application that allowers users to create, edit, update, and delete product entries. The full entry is made into an internal-use company database, and an abbreviated entry is separate made into a customer-facing database. A microservice is used for modularity.
+BOUTIQUE is a full stack web application that allowers users to create, edit, update, and delete product entries. The full entry is made into an internal-use company database, and an abbreviated entry is separate made into a customer-facing database. A microservice is used for modularity.
 
 ## Features
   • CRUD operations for products
