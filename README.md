@@ -32,11 +32,11 @@ To run the application locally, ensure you have the following installed:
    ```bash
    cd backend
    ```
-Install backend dependencies:
+   Install backend dependencies:
    ```bash
    npm install
    ```
-Start the backend server:
+   Start the backend server:
    ```bash
    npm start
    ```
@@ -44,11 +44,11 @@ Start the backend server:
    ```bash
    cd client
    ```
-Install frontend dependencies:
+   Install frontend dependencies:
    ```bash
    npm install
    ```
-Start the frontend server:
+   Start the frontend server:
    ```bash
    npm start
    ```
