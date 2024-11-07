@@ -1,6 +1,6 @@
-# BOUTIQUE - Product Database
+# StoreSync - Product Database
 
-BOUTIQUE is a full-stack web application that allows users to create, edit, update, and delete product entries. The application maintains two databases: one for internal company use and one for customer-facing product listings. A microservice architecture ensures modularity and scalability of the application.
+StoreSync is a full-stack web application that allows users to create, edit, update, and delete product entries. The application maintains two databases: one for internal company use and one for customer-facing product listings. A microservice architecture ensures modularity and scalability of the application.
 
 ## Features
 - **Full CRUD Operations** for products
@@ -26,7 +26,7 @@ To run the application locally, ensure you have the following installed:
 ### Steps to Install
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/sber-sber/BOUTIQUE.git
+   git clone https://github.com/sber-sber/store-sync.git
    ```
 2. **Backend Setup**: Navigate to the backend directory:
    ```bash
