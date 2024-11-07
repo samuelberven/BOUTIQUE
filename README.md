@@ -30,29 +30,28 @@ To run the application locally, ensure you have the following installed:
    ```
 2. **Backend Setup**: Navigate to the backend directory:
    ```bash
-  cd backend
-    ```
+   cd backend
+   ```
 Install backend dependencies:
    ```bash
    npm install
    ```
 Start the backend server:
-  ```bash
-  npm start
-  ```
+   ```bash
+   npm start
+   ```
 3. **Frontend Setup**: In a separate terminal instance, navigate to the frontend directory:
-  ```bash
-  cd client
-  ```
+   ```bash
+   cd client
+   ```
 Install frontend dependencies:
-  ```bash
-  npm install
-  ```
+   ```bash
+   npm install
+   ```
 Start the frontend server:
-  ```bash
-npm start
-  ```
-
+   ```bash
+   npm start
+   ```
 If the frontend does not open automatically, navigate to http://localhost:3000 in your browser.
 
 ## Usage
